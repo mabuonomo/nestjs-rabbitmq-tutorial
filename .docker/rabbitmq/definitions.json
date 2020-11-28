@@ -33,6 +33,15 @@
       "auto_delete": false,
       "internal": false,
       "arguments": {}
+    },
+    {
+      "name": "exhange_topic",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
     }
   ],
   "queues": [
@@ -45,6 +54,20 @@
     },
     {
       "name": "queue2_fanout",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "queue1_topic",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "queue2_topic",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
@@ -66,6 +89,22 @@
       "destination": "queue2_fanout",
       "destination_type": "queue",
       "routing_key": "*",
+      "arguments": {}
+    },
+    {
+      "source": "exhange_topic",
+      "vhost": "/",
+      "destination": "queue1_topic",
+      "destination_type": "queue",
+      "routing_key": "queue1",
+      "arguments": {}
+    },
+    {
+      "source": "exhange_topic",
+      "vhost": "/",
+      "destination": "queue2_topic",
+      "destination_type": "queue",
+      "routing_key": "queue2",
       "arguments": {}
     }
   ]
