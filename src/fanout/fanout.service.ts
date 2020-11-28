@@ -6,6 +6,7 @@ export class FanoutService {
   constructor(private readonly amqpConnection: AmqpConnection) {}
 
   publish() {
+    console.log('publishing fanout');
     this.amqpConnection.publish('exchange_fanout', '', {
       msg: 'publish fanout',
     });
