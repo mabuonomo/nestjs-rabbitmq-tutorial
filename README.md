@@ -1,4 +1,4 @@
-# Tutorial: RabbitMQ with Nestjs
+# Tutorial: RabbitMQ (topic and fanout exchange) with Nestjs
 
 This tutorial show how to use rabbitmq topic and fanout exchange in NestJS.
 To do this we use an external npm package [golevelup/nestjs-rabbitmq](https://www.npmjs.com/package/@golevelup/nestjs-rabbitmq) because the default module support only the direct exchange
@@ -11,21 +11,29 @@ To do this we use an external npm package [golevelup/nestjs-rabbitmq](https://ww
 - docker
 - docker-compose
 
-## Running the app
+## 🚧 Structure
+
+The project has 2 modules (plus the app module).
+
+- Fanout
+- Topic
+
+## 🚀 Running the app 
 
 ```bash
-# development
 $ docker-compose up
 ```
 
-Now open, to test the topic exchange
+## 💾 Publish a message
+
+To publish a message in a topic exchange open:
 
 ```
 http://localhost:3000/topic/topic1
 http://localhost:3000/topic/topic2
 ```
 
-or to test the fanout exchange
+or if you want publish in a fanout open:
 
 ```
 http://localhost:3000/fanout
