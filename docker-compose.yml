@@ -1,9 +1,18 @@
-version: "3.7"
+version: '3.7'
 
 services:
+  nestjs:
+    image: node:latest
+    depends_on:
+      - rabbitmq
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && npm run start:dev"
+
   rabbitmq:
     image: rabbitmq:3.6.5-management
     volumes:
-      - ./data:/var/lib/rabbitmq:rw
+      - ./data/rabbitmq:/var/lib/rabbitmq:rw
       - ./.docker/rabbitmq/definitions.json:/opt/definitions.json:ro
       - ./.docker/rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
