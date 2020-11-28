@@ -10,6 +10,18 @@ export class TopicController {
     this.topicService.publish1();
     this.topicService.publish2();
 
-    return 'Published a message in a topic queues';
+    return 'Published a message in a topic queues all';
+  }
+
+  @Get('topic1')
+  publish1(): string {
+    this.topicService.publish1();
+    return 'Published a message in a topic queues 1';
+  }
+
+  @Get('topic2')
+  publish2(): string {
+    this.topicService.publish2();
+    return 'Published a message in a topic queues 2';
   }
 }

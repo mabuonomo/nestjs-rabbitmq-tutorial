@@ -12,7 +12,7 @@ export class TopicService {
   publish1() {
     console.log('publishing topic 1');
 
-    this.amqpConnection.publish('exchange_topic', 'queue1', {
+    this.amqpConnection.publish('exchange_topic', 'abc', {
       msg: 'publish topic queue1',
     });
   }
@@ -20,22 +20,24 @@ export class TopicService {
   publish2() {
     console.log('publishing topic 2');
 
-    this.amqpConnection.publish('exchange_topic', 'queue2', {
+    this.amqpConnection.publish('exchange_topic', 'cde', {
       msg: 'publish topic queue2',
     });
   }
 
-  @RabbitRPC({
+  @RabbitSubscribe({
     exchange: 'exchange_topic',
-    routingKey: 'queue1',
+    routingKey: 'abc',
+    queue: 'queue1_topic',
   })
   public async pubSubHandler1(msg: {}) {
     console.log(`Received message from topic 1: ${JSON.stringify(msg)}`);
   }
 
-  @RabbitRPC({
+  @RabbitSubscribe({
     exchange: 'exchange_topic',
-    routingKey: 'queue2',
+    routingKey: 'cde',
+    queue: 'queue2_topic',
   })
   public async pubSubHandler2(msg: {}) {
     console.log(`Received message from topic 2: ${JSON.stringify(msg)}`);

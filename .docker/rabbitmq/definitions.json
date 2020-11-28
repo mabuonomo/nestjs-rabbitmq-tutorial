@@ -96,7 +96,7 @@
       "vhost": "/",
       "destination": "queue1_topic",
       "destination_type": "queue",
-      "routing_key": "queue1",
+      "routing_key": "abc",
       "arguments": {}
     },
     {
@@ -104,7 +104,7 @@
       "vhost": "/",
       "destination": "queue2_topic",
       "destination_type": "queue",
-      "routing_key": "queue2",
+      "routing_key": "cde",
       "arguments": {}
     }
   ]
