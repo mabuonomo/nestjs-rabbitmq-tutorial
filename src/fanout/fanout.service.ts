@@ -16,7 +16,16 @@ export class FanoutService {
     routingKey: '',
     queue: 'queue1_fanout',
   })
-  public async pubSubHandler(msg: {}) {
-    console.log(`Received message from fanout: ${JSON.stringify(msg)}`);
+  public async pubSubHandler1(msg: {}) {
+    console.log(`Received message from fanout 1: ${JSON.stringify(msg)}`);
+  }
+
+  @RabbitSubscribe({
+    exchange: 'exchange_fanout',
+    routingKey: '',
+    queue: 'queue2_fanout',
+  })
+  public async pubSubHandler2(msg: {}) {
+    console.log(`Received message from fanout 2: ${JSON.stringify(msg)}`);
   }
 }
