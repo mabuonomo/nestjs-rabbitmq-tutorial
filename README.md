@@ -1,10 +1,14 @@
 # Tutorial: RabbitMQ, topic and fanout exchange, using Nestjs
 
 This tutorial show how to use rabbitmq topic and fanout exchange in NestJS.
-To do this we use an external npm package [golevelup/nestjs-rabbitmq](https://www.npmjs.com/package/@golevelup/nestjs-rabbitmq) because the default module support only the direct exchange
+To do this we use an external npm package [golevelup/nestjs-rabbitmq](https://www.npmjs.com/package/@golevelup/nestjs-rabbitmq) because the default module supports only the direct exchange
 
-<p align="center"><img src="./assets/rabbitmq.png" width="420" alt="Nest Logo" />
-</p>
+RabbitMQ supports the following exchange types:
+
+- Direct: The message is routed to the queues whose binding key exactly matches the routing key of the message.
+- Fanout: A fanout exchange routes messages to all of the queues bound to it.
+- Topic: The topic exchange does a wildcard match between the routing key and the routing pattern specified in the binding.
+- Headers: Headers exchanges use the message header attributes for routing.
 
 ## Prerequisites
 
@@ -18,7 +22,7 @@ The project has 2 modules (plus the app module).
 - Fanout
 - Topic
 
-## 🚀 Running the app 
+## 🚀 Running the app
 
 ```bash
 $ docker-compose up
