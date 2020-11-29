@@ -17,10 +17,13 @@ RabbitMQ supports the following exchange types:
 
 ## 🚧 Structure
 
-The project has 2 modules (plus the app module).
+The project has:
 
-- Fanout
-- Topic
+- 2 nestjs's modules (plus the app module): topic and fanout.
+- 2 rabbitmq's exchanges: exchange_topic and exchange_fanout
+- 4 rabbitmq's queues: queue1_fanout, queue2_fanout, queue1_topic, queue2_topic
+
+To edit/replace these queues you can edit .docker/rabbitmq/definitions.json to rebuild the image
 
 ## 🚀 Running the app
 
