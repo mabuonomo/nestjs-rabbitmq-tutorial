@@ -1,4 +1,4 @@
-# Tutorial: RabbitMQ, topic and fanout exchange, using Nestjs
+# Tutorial: RabbitMQ + Nestjs
 
 This tutorial show how to use rabbitmq topic and fanout exchange in NestJS.
 To do this we use an external npm package [golevelup/nestjs-rabbitmq](https://www.npmjs.com/package/@golevelup/nestjs-rabbitmq) because the default module supports only the direct exchange
