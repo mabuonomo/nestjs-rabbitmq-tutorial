@@ -1,14 +1,25 @@
 import { AmqpConnection, RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+} from '@nestjs/common';
+import { ValidationInterceptor } from './validation/validation.interceptor';
 
 @Injectable()
 export class FanoutService {
   constructor(private readonly amqpConnection: AmqpConnection) {}
 
   publish() {
-    console.log('publishing fanout');
+    console.log('publish fanout (show only on 2)');
     this.amqpConnection.publish('exchange_fanout', '', {
-      msg: 'publish fanout',
+      msg: 'publish fanout (show only on 2)',
+    });
+
+    console.log('publish fanout hello (show on 1 and 2)');
+    this.amqpConnection.publish('exchange_fanout', '', {
+      msg: 'publish fanout hello (show on 1 and 2)',
     });
   }
 
@@ -17,6 +28,7 @@ export class FanoutService {
     routingKey: '',
     queue: 'queue1_fanout',
   })
+  @UseInterceptors(ValidationInterceptor)
   public async pubSubHandler1(msg: {}) {
     console.log(`Received message from fanout 1: ${JSON.stringify(msg)}`);
   }
