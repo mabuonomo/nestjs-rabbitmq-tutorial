@@ -5,6 +5,7 @@ import {
   UseInterceptors,
   UsePipes,
 } from '@nestjs/common';
+import { ValidationDTO } from './validation/validation.dto';
 import { ValidationInterceptor } from './validation/validation.interceptor';
 
 @Injectable()
@@ -28,7 +29,7 @@ export class FanoutService {
     routingKey: '',
     queue: 'queue1_fanout',
   })
-  @UseInterceptors(ValidationInterceptor)
+  @UseInterceptors(new ValidationInterceptor<ValidationDTO>(ValidationDTO))
   public async pubSubHandler1(msg: {}) {
     console.log(`Received message from fanout 1: ${JSON.stringify(msg)}`);
   }
