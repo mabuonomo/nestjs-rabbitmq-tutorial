@@ -7,7 +7,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { validate } from 'class-validator';
+import { validate, ValidationError } from 'class-validator';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { ValidationDTO } from './validation.dto';
 
@@ -24,9 +24,10 @@ export class ValidationInterceptor<T>
     let obj = context.getArgs()[0];
 
     const object = plainToClass(this.classType, obj);
-    const errors = await validate(object);
+    const errors: ValidationError[] = await validate(object);
     if (errors.length > 0) {
       new Nack(false);
+      console.log('Error', errors);
       return null;
     }
 
